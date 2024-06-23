@@ -60,6 +60,9 @@ def display(response):
         else:
             dic['Raw Material'][i] = [raw,['None']]
         print(dic['Raw Material'][i])
+        
+    dic['Ingredients'] = dic['Raw Material']
+    del dic['Raw Material']
     return dic
     
 def text(TEXT):
@@ -123,10 +126,6 @@ def BarcodeReader(IMAGE):
 
 app = Flask(__name__)
 
-# @app.route("/")
-# def home():
-#     return "Hone"
-
 # @app.route("/get-user/<user_id>")
 # def get_user(user_id):
 #     user_data = {
@@ -149,14 +148,6 @@ swaggerui_blueprint = get_swaggerui_blueprint(
     config={  # Swagger UI config overrides
         'app_name': "Test application"
     },
-    # oauth_config={  # OAuth config. See https://github.com/swagger-api/swagger-ui#oauth2-configuration .
-    #    'clientId': "your-client-id",
-    #    'clientSecret': "your-client-secret-if-required",
-    #    'realm': "your-realms",
-    #    'appName': "your-app-name",
-    #    'scopeSeparator': " ",
-    #    'additionalQueryStringParams': {'test': "hello"}
-    # }
 )
 
 app.register_blueprint(swaggerui_blueprint)
